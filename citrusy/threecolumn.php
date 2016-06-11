@@ -198,15 +198,21 @@ else
 $res=$con->query("select * from products");
 echo "<br>";
  $row=$res->fetch_assoc();
-
+echo '<table>';
+$i=0;
 while($row)
-{
-?><div class = "prod_details">
-<br/><img src="<?php echo $row['prod_img'];?>" alt="shahi_garam.jpg"><br><?php echo $row['prod_name']."<br>"; echo $row['prod_price'];?></div><br/>
-<?php
+{if($i%3==0) {echo '<br><tr>';}
+?><td><div class = "prod_details">
+<br/><img src="<?php echo $row['prod_img'];?>" alt="shahi_garam.jpg"><br><?php echo $row['prod_name']."<br>"; echo $row['prod_price'];?></div>
+</td>
+
+<br/>
+<?php 
+$i++;
+if(($i)%3==0) {echo '</tr><tr><td style="line-height:10px;" colspan=3>&nbsp;</td></tr>';}
 $row=$res->fetch_assoc();
 }
 ?>
-
+</table>
 </body>
 </html>
